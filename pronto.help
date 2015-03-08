@@ -1,0 +1,463 @@
+
+
+               PROGRAM PRONTO - FAST TRAVELTIME TOMOGRAPHY
+  
+  
+I.   GENERAL DESCRIPTION 
+
+      Program PRONTO implements an iterative tomographic inversion proced-
+      ure for reconstructing a two-dimensional velocity model from measur-
+      ed first arrival times.  Two key features of the technique are (i)
+      use of a finite difference algorithm for rapid forward modeling of
+      traveltimes, and (ii) inclusion of constraint information in order 
+      to restrict the nonuniqueness inherent in this large scale, nonlin-
+      ear inverse problem.  
+  
+      The tomographic inversion procedure consists of four basic steps:
+ 
+        1) calculation of first arrival traveltimes from each source loc-
+           ation to all points of a gridded slowness field,  
+ 
+        2) generation of raypaths between all source-receiver pairs,
+ 
+        3) solution of a large and sparse system of linear equations for
+           a perturbation to the existing slowness model, 
+ 
+        4) updating and (optionally) smoothing the slowness model.
+ 
+      This four-step process is initiated with an estimate of the true 
+      slowness function, and is repeated until an acceptable match is ob-
+      tained between observed and calculated traveltimes.  A final veloc-
+      ity model is obtained by reciprocating the computed slowness model.
+ 
+      The inversion algorithm is not restricted to any particular source-
+      receiver configuration.  For example, it may be used with crosswell,
+      VSP/RVSP, or surface-to-surface recording geometries.  Moreover,   
+      undulating surface topography is easily accommodated.  
+ 
+      A more complete description of the tomographic inversion procedure,
+      including synthetic and field data examples, is given by Aldridge
+      and Oldenburg (1993a,b).
+  
+  
+
+II.  COORDINATE SYSTEM
+ 
+      The inversion algorithm works with a two-dimensional gridded slow-
+      ness (i.e., reciprocal velocity) model defined at the points
+ 
+                 x(i) = xmin + (i-1)*h       i=1,2,3,...,nx
+
+                 z(j) = zmin + (j-1)*h       j=1,2,3,...,nz
+  
+      where h is the grid interval.  Note that this interval is the same
+      in both spatial dimensions.  In most applications, the x-axis is a
+      horizontal axis and the z-axis is a depth axis (with depth increas-
+      ing vertically downwards):
+ 
+                O |                           +x          
+                --------------------------------->
+                  |
+                  | 
+                  |
+                  |
+                  |
+                  |
+                  |
+              +z \|/
+  
+  
+      Since the inversion algorithm is two-dimensional, all sources and
+      receivers should be confined (approximately) to a plane.  This is
+      often the case in conventional line surveys, crosswell surveys, and
+      VSP surveys.
+
+      There are two options for determining the spatial extent of the
+      two-dimensional slowness grid:
+
+      1) Option #1:  Minimum and maximum horizontal (xmin, xmax) and 
+         vertical (zmin, zmax) coordinate values are specified by the
+         user.  The program subsequently checks that all sources and
+         receivers reside within these bounds.  Note: a source or receiver
+         is not allowed to reside on the edge of the grid (i.e., have a
+         position coordinate xmin, xmax, zmin, or zmax).
+
+      2) Option #2:  The minimum horizontal grid coordinate (xmin) and 
+         the total number of grid points in the horizontal direction (nx)
+         are automatically determined by the program so that all sources 
+         and receivers reside within the grid bounds.  The analogous 
+         quantities for the vertical dimension of the grid (zmin and nz)
+         are calculated in a similar manner.  
+
+      For both options, the user is responsible for specifying the grid
+      interval (h).
+ 
+      The inversion algorithm is not sensitive to the unit of measure 
+      chosen for length.  Either English or metric (or any other) unit
+      may be used, as long as consistency is maintained.
+ 
+ 
+
+III.  RUN PARAMETERS
+
+  1) Location of traveltime picks: 
+ 
+      The observed traveltimes used for the tomographic inversion are 
+      obtained from an external file.  The file is read with the follow-
+      ing simple FORTRAN code:
+ 
+                    read (11,*) ns
+                    do 1 i=1,ns
+                    read (11,*) xs,zs,nr(i)
+                    do 1 j=1,nr(i)
+                  1 read (11,*) xr,zr,tobs,wait
+
+      where (xs,zs) are the source coordinates, (xr,zr) are the receiver
+      coordinates, tobs is the observed traveltime, and wait is a (dimen-
+      sionless) data weight value.  The data in the input file should be
+      organized in a "shot ordered" manner, with the total number of 
+      shot gathers equal to ns.  Note that the number of first break pick
+      times in each shot gather need not be the same, and is specified by
+      the array values nr(i).
+      
+ 
+  2) Minimum and maximum valid pick times:
+  
+      Each observed traveltime is tested against user specified lower and 
+      upper bounds.  If it falls outside of these bounds, then the travel-
+      time is discarded.  This is a convenient mechanism for deleting bad
+      picks from a dataset prior to performing a tomographic inversion.
+      Bad picks may arise from noisy traces, dead traces, tailspreads,
+      unpicked shot gathers, etc.
+
+  
+  3) Traveltime output:
+  
+      After the tomographic inversion is complete, either predicted (i.e.,
+      computed) traveltimes or traveltime residuals (i.e., observed minus
+      predicted traveltimes) can be output.  The format of the output file
+      is identical to that of an input data file, described in 1) above.
+      Hence, this file may be used to restart the algorithm.
+ 
+      The total number of output traveltimes (or residuals) can be less 
+      than the total number of input observed times.  This will occur if
+      certain input traveltimes are excluded from the tomographic inver-
+      sion procedure via the limits described in point 2) above.  Only
+      those traveltimes (or residuals) that are actually used by the in-
+      version algorithm will be output.  
+  
+      If traveltime residuals are output, then the minimum, maximum, mean,
+      and rms values of the residuals are computed and written to standard
+      output.  Traveltime residuals provide useful diagnostic information
+      for checking the quality of a tomographic inversion.  Furthermore,
+      the  mean (or median) of the residuals associated with a particular 
+      source or receiver site can be used as a residual static correction
+      for that location. 
+ 
+      Finally, in order to conserve file storage space, the user may requ-
+      est that no traveltimes or residuals be written out. 
+  
+   
+  4) Initial velocity model:
+  
+      The initial velocity model is obtained either from (i) the linear
+      velocity formula, or (ii) an external file.  If option (i) is sel-
+      ected, then an initial velocity model is internally generated by
+      evaluating the linear velocity formula
+
+               v(x,z) = vo + ax*(x-xo) + az*(z-zo)
+ 
+      at the points
+ 
+               x(i) = xmin + (i-1)*h,     z(j) = zmin + (j-1)*h,
+ 
+      where h is the grid interval.  In the above expression (xo,zo) are
+      the coordinates of a reference point where the velocity equals the
+      value vo, and (ax,az) are the horizontal and vertical components of
+      the velocity gradient vector.  These components can be expressed as
+
+               ax = a*cos(phi),           az = a*sin(phi),
+
+      where a is the magnitude of the gradient vector, and the angle phi
+      defines the direction of the gradient relative to the +x direction.
+      The angle phi is considered positive when it opens in a clockwise
+      sense from the +x-axis.  For example, the common situation where the
+      velocity gradient vector points vertically downward is specified by
+      phi=+90 degrees.
+ 
+      If option (ii) is selected, a gridded velocity model consisting of
+      nx columns and nz rows is read into the program with the FORTRAN
+      code:
+  
+                   do 1 j=1,nz
+                   do 1 i=1,nx
+                 1 read (12,*) x,z,v(i,j)
+  
+      Velocity sample v(i,j) represents the velocity at location
+
+               x = xmin + (i-1)*h,     z = zmin + (j-1)*h,
+
+      where h is the grid interval.
+ 
+      After an initial velocity model is obtained, it is reciprocated to
+      provide an initial slowness model for the tomographic inversion al-
+      gorithm.
+      
+              
+  5) Final velocity model:
+ 
+      After the tomographic inversion is complete, the computed gridded 
+      slowness model is reciprocated to obtain a final velocity model.  
+      This model is written to an external file with the same format as
+      an input velocity file described in point 4) above.  Velocity 
+      sample v(i,j) represents the velocity at location
+
+               x = xmin + (i-1)*h,      z = zmin + (j-1)*h,
+
+      where h is the grid interval.
+ 
+ 
+  8) Ray density:
+
+      The raypath density associated with the final velocity model is
+      written to an external file.  The ray density measure used is a
+      dimensionless quantity defined as the total raypath length per
+      slowness cell, divided by the grid interval.  A slowness cell is
+      the square area bounded by four adjacent slowness grid points.  The
+      computed ray density is assigned to the center of the cell for plot
+      purposes.  A raypath density map consisting of (nx-1) columns and
+      (nz-1) rows is written to the output file with the FORTRAN code:
+
+                   do 1 j=1,nz-1
+                   z=zmin+(j-0.5)*h
+                   do 1 i=1,nx-1
+                   x=xmin+(i-0.5)*h
+                 1 write (16,*) x,z,rayden(i,j)
+
+      where rayden(i,j) represents the raypath density at location
+
+               x = xmin + (i-0.5)*h,      z = zmin + (j-0.5)*h,
+
+      and h is the grid interval.
+
+      Ray density provides useful diagnostic information for judging the
+      reliability of a tomographic inversion.  Portions of the velocity
+      model that are not covered by any raypaths (typically near the 
+      corners) have a raypath density equal to zero (0.0).
+
+       
+  7) Grid interval:
+  
+      In the Vidale (1988) scheme for solving the eikonal equation via
+      finite differences, the horizontal and vertical grid intervals are
+      equal.  Thus, only one value for the grid interval needs to be spec-
+      ified.  Typically, the grid interval is approximately equal to the 
+      source or receiver spacing for the survey. 
+ 
+  
+  8) Spatial extensions of grid:
+ 
+      As indicated in Section II above, the spatial limits of the grid may
+      be automatically determined from the minimum and maximum source and
+      receiver coordinates contained in the input data file.  This grid
+      may be expanded, in any or all of the four coordinate directions 
+      (+x,-x,+z,-z), via user-specified extension distances.  
+
+      The are two main reasons for expanding the grid.  First, the ray-
+      tracing algorithm performs better if sources and/or receivers are not
+      located on or near edges of the velocity model.  Second, in a surface 
+      survey, the expansion distance in the +z direction controls the total
+      depth to which a tomographic velocity model is determined.  For such
+      a survey, the depth should be chosen large enough so that raypaths can
+      be successfully traced through the model to the far offset receivers.
+
+      The principal disadvantage of expanding the grid in the horizontal 
+      directions is that numerous cells may be added to the slowness model
+      that have little of no raypath coverage.  Hence, horizontal extens-
+      sions should be kept small.  
+
+      Alternatively, the spatial extent of the 2D slowness grid may be
+      defined by user-specified minimum and maximum horizontal (xmin,xmax)
+      and vertical (zmin,zmax) coordinate values.
+
+  
+  9) Maximum number of tomographic iterations:
+ 
+      Each tomographic iteration consists of a forward modeling step
+      (i.e., computation of traveltimes and residuals) and an inversion
+      step (i.e., computation of a slowness model update).  The maximum
+      number of iterations must be specified. 
+  
+  
+ 10) Number of conjugate gradient iterations:
+ 
+      Algorithm LSQR (Paige and Saunders, 1982; Nolet, 1987) is used to
+      solve the large and sparse system of linear algebraic equations for
+      an update to the slowness model.  This algorithm is designed to seek
+      the minimum norm least squares solution of a set of linear equat-
+      ions.  LSQR is iterative, and thus the number of iterations must be
+      specified.  
+  
+  
+ 11) Root-Mean-Square traveltime residual for convergence:
+  
+      After traveltimes and raypaths are computed on each tomographic it-
+      eration, the root-mean-square value of the traveltime residuals is
+      calculated.  A traveltime residual is defined as an observed (i.e.,
+      picked) traveltime minus the corresponding predicted (i.e., comput-
+      ed) traveltime.  Iterations terminate when the rms residual decreas-
+      es below a user specified value.  This value is usually chosen to be
+      approximately equal to the estimated rms error in the picked times.
+  
+  
+ 12) Maximum absolute traveltime residual:
+  
+      On every tomographic iteration, the traveltime residual associated
+      with each source-receiver pair is tested against a user specified
+      limit.  If the absolute value of the residual exceeds this limit, 
+      then the equation corresponding to that residual is weighted by zero
+      (0.0) in the system to be solved by LSQR.  Thus, this equation has
+      no influence on the least squares solution for the slowness model 
+      update vector.  
+
+  
+ 13) Slowness model constraints:
+  
+      During the course of the tomographic iterations, constraints can be
+      applied to the slowness model.  Constraints are used to stabilize 
+      the inversion and to introduce a priori geological or geophysical
+      knowledge into the inversion procedure.  The constraints may be app-
+      lied (i) directly to the slowness model (i.e., to the zeroth deriv-
+      ative of the slowness model), (ii) to the first derivative(s) of the
+      slowness model, or (iii) to the second derivative(s) of the slowness
+      model.  Any combination of these options is also allowed.  If the
+      slowness derivatives are to be constrained, then the user must spec-
+      ify which derivatives (horizontal, vertical, mixed, directional, or 
+      any combination thereof) are to be used.  
+
+      The basic philosophy of the tomographic inversion procedure is to
+      construct a slowness model that simultaneously satisfies the obser-
+      ved traveltime data AND the specified constraints.  The degree to 
+      which the constraint equations are fit is determined by user defined
+      weight values.  If a weight value equals zero, the corresponding 
+      constraint equations are ignored.  Increasing the weight value impl-
+      ies that the constraint equations will assume a more important role
+      in the inversion, at the expense of the data equations.  Finally, in
+      the limit of very large weight values, the data equations will be 
+      ignored and the inversion algorithm will construct a slowness model
+      that satisfies the constraints only. 
+ 
+      Unfortunately, there are no general rules for choosing numerical val-
+      ues for the constaint equation weights.  Rather, values have to be
+      determined by experimentation with the program.  Experience with a
+      few datasets indicates that values in the range 5 to 100 produce
+      reasonable results. 
+ 
+      The constraints are designed to produce a velocity model with feat-
+      ures similar to those of a prescribed reference velocity model. 
+      Commonly, the reference model is identical to (i) the initial velo-
+      city model.  However, this restriction is not mandatory.  Thus, the
+      reference model can also be obtained either from (ii) the linear
+      velocity formula, or (iii) an external file.  See the pertinent
+      remarks under point 4) above.
+  
+      A fuller description of the use of constraints in the inversion pro-
+      cedure is given by Aldridge and Oldenburg (1993a,b).
+
+ 
+ 14) Smoothing filter:
+  
+      A rectangular smoothing filter can be convolved with the gridded 
+      slowness model between tomographic iterations.  The horizontal and
+      vertical dimensions of the filter are specified by the user.  The
+      weight distribution of the filter can be described as "tent-shaped":
+      the edge weights are assumed to be 1.0, and the center weight (i.e.,
+      at the apex of the tent) is prescribed by the user.  All weights are
+      then normalized so that the filter response at wavenumbers kx=kz=0
+      is unity.  Hence, a constant slowness is passed unaltered by the
+      filter.  Note that a simple moving average filter can be obtained by
+      setting the center weight equal to 1.0.  
+  
+      Filter edge effects are handled by conceptually extending the slow-
+      ness model beyond the defined grid with the local gridpoint slow-
+      ness values. 
+ 
+      The filter response is zero-phase.  The dimensions of the filter 
+      need not be integer multiples of the grid interval h.  If the hor-
+      izontal (vertical) dimension of the filter is smaller than two grid
+      intervals (2*h), the the 2D filter degenerates into a 1D vertical
+      (horizontal) line filter.  If both filter dimensions are less than
+      2*h, then the filter request is ignored.  
+
+ 15)  Velocity bounds:
+
+      After the 2D slowness model is updated on each tomographic iteration,
+      the slowness assigned to each square cell is tested against prescrib-
+      ed lower and upper bounds.  These slowness bounds (smin, smax) are
+      obtained by reciprocating user-specified velocity bounds (vmin,vmax):
+
+                 smin = 1.0/vmax,         smax = 1.0/vmin,
+
+      where vmax > vmin (and both are positive).   Any slowness cell value
+      that penentrates a bound is reset to the bounding value.  The effect
+      of these bounds may be diminished or eliminated by prescribing "wide
+      bound" values (i.e., vmin near zero and vmax very large).
+ 
+ 16) Topography option:
+ 
+      The seismic raypaths linking source-receiver pairs should be located
+      beneath the earth's surface.  This will usually occur if the velo-
+      city associated with grid points above the surface is sufficiently
+      low.  Ideally, the velocity at these points should equal sound speed
+      in air (approximately 350 m/s or 1150 ft/s).  However, a strong vel-
+      ocity contrast at the surface can create problems for the finite
+      difference algorithm used to compute arrival times.  Thus, the velo-
+      city at these grid points should only be `somewhat lower' than the
+      velocity immediately below the ground surface.
+ 
+      If the `topograpy option' is activated, then the velocity at grid 
+      nodes above the earth's surface will be reduced.  At horizontal
+      coordinate x(i)=xmin+(i-1)*h, the velocity at these points will be
+      set equal to a fraction of the velocity at the grid point just below
+      the surface with the same x-coordinate.  The fractional value is
+      specified by the user and must be between 0.0 and 1.0.
+ 
+      The reduced velocity values are used only for forward modeling
+      purposes (i.e., computation of traveltimes and raypaths) in order
+      to ensure that raypaths are located below the earth's surface.
+      When the final velocity model is written to an external file, the
+      velocity at gridpoints above the topographic surface will be set
+      equal to the (user specified) speed of sound in air.
+
+      If the tomographic survey is far from the earth's surface (as in 
+      many crosswell surveys) or there is no significant variation in the
+      elevation of the surface (as in marine seismic surveys), then the
+      topography option hould not be activated.  Use this option only if
+      there is substantial elevation variation along a land seismic line.
+ 
+
+
+IV.  REFERENCES
+
+  Aldridge, D.F., and Oldenburg, D.W., 1993a, Two dimensional tomographic
+    inversion with finite difference traveltimes: Technical Memorandum
+    TM93000359, Chevron Petroleum Technology Company, La Habra, Califor-
+    nia.  
+
+  Aldridge, D.F., and Oldenburg, D.W., 1993b, Two-dimensional tomographic
+    inversion with finite-difference traveltimes: Journal of Seismic Expl-
+    oration, vol. 2, p. 257-274.
+
+  Nolet, G., 1987, Seismic wave propagation and seismic tomography: in
+    Seismic Tomography, ed. by G. Nolet, D. Reidel Publishing Company, 
+    p. 1-23.
+   
+  Paige, C.C., and Saunders, M.A., 1982, LSQR: an algorithm for sparse
+    linear equations and sparse least squares: ACM Transactions on Math-
+    ematical Software, vol. 8, p. 43-71.
+
+  Vidale, J., 1988, Finite-difference calculation of travel times: Bull-
+    etin of the Seismological Society of America, vol. 78, p. 2062-2076.
+ 
+ 
+ 

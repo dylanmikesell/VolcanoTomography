@@ -1,0 +1,92 @@
+Dylan - 
+
+
+These codes take 9 days of ambient correlations
+and make group velocity maps at many frequencies.
+
+This is an example from Katmai. Since both command line and Matlab
+prompt are used, below in the 5-step instructions I denote the command
+line by "$" and the Matlab prompt by ">>".
+
+Download everything from this FTP site - just enter it into a Firefox
+window for example:
+
+ftp://ftpext.usgs.gov/pub/wr/ak/anchorage/Haney/ambient_tomo/
+
+The contents of the folder are about 90 MB. I included in this folder
+2 PDF files that describe the tomography code, called PRONTO by David
+Aldridge of Sandia Labs. Also look in the files "pronto.help" and
+"pronto.run_help" for more information about PRONTO. I also included a
+demo file "nxcorr_katmai_demo.m" that shows how the data files or raw
+correlations, the ones called "d1d2sv_katmai_11012005_d?.bin", were
+made. This demo code can't be run, but it is provided to show how the
+data files were made.
+
+The only thing left after this is to do the depth inversion step. This
+takes the 3D "cube" of group velocities as a function of longitude
+(x), latitude (y), and frequency (f) or Vg(x,y,f) and inverts a local
+dispersion curve at (x_o,y_o) called Vg(x_o,y_o,f) for a local shear
+wave depth model Vs(x_o,y_o,z). I'm currently working on an update of 
+these depth inversion codes that has better convergence properties than 
+the earlier version of the codes.
+
+There's a lot of sloppy hardcoding in the Matlab here so please send
+any questions. Tell me if you're able to make it through the 5 steps
+below for the example provided.
+
+I'll follow this up with another email discussing how to do a checkerboard 
+test.
+
+cheers
+Matt
+
+Instructions:
+
+1. Make sure you can compile the Fortran code "pronto.f".
+
+$ gfortran pronto.f -O3 -o pronto.exe
+
+or
+
+$ gfortran pronto.f -o pronto.exe
+
+I use gfortran on my Mac. I included the exe file on the FTP site but
+it may not work on your machine. The machine I compiled on is my
+machine, a Mac laptop running snow leopard. Gfortran is freely
+available and has both Mac and Linux versions. The old "f77" or "g77"
+fortran compilers will work as well and interchangeably with
+"gfrotran".
+
+
+2. Run the matlab code "process_grp_mix_katmai".
+
+>> process_grp_mix_katmai
+
+This takes a little over 2 minutes on my Mac. It takes 9 days of
+ambient correlations and makes 91 data*.obs files, which are
+traveltime tables at the 91 frequencies from 0.1:0.01:0.9 Hz.
+
+
+3. Run the matlab code "write_run_files".
+
+>> write_run_files
+
+This makes 61 pronto*.run files from 0.1:0.01:0.7 Hz, which are input
+files for the tomography code pronto.exe. Runs very quickly.
+
+
+4. Execute the shell script "manyvels.sh" at the command line.
+
+$ manyvels.sh
+
+This does 2D tomography at each frequency from 0.1:0.01:0.7 Hz and
+writes the velocity models and ray density maps out to vel*.final and
+ray*.final.
+
+
+5. Run the matlab code "vel_look_katmai".
+
+>> vel_look_katmai
+
+This load the 2D velocity models at each frequency and plots the group
+velocity maps at 0.15, 0.3, and 0.4 Hz along with the stations.
