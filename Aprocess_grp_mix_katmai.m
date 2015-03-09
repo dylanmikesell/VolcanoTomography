@@ -422,8 +422,8 @@ for fcmp=1:81
     
     
     % quality control
-    an2 = zeros(ngood,2);
-    ttp2 = zeros(ngood,1);
+    an2   = zeros(ngood,2);
+    ttp2  = zeros(ngood,1);
     ntrac = zeros(1,nsrc);
     
     % first make pairn4, a continuous record of source number
@@ -442,7 +442,7 @@ for fcmp=1:81
     pairn5(1) = pairn3(1,1);
     for ii=1:(countrr-1)
         if (pairn3(ii+1,1) > pairn3(ii,1))
-            jmpd = jmpd + 1;
+            jmpd           = jmpd + 1;
             pairn5(jmpd+1) =  pairn3(ii+1,1) ;
         else
         end
@@ -452,9 +452,9 @@ for fcmp=1:81
     countr2 = 0;
     for ii=1:countrr
         if (dtimsin(fcmp,ii) == 1)
-            countr2 = countr2 + 1;
-            an2(countr2,:) = an(ii,:);
-            ttp2(countr2) = ttp(ii);
+            countr2           = countr2 + 1;
+            an2(countr2,:)    = an(ii,:);
+            ttp2(countr2)     = ttp(ii);
             ntrac(pairn4(ii)) = ntrac(pairn4(ii)) + 1;
         else
         end
