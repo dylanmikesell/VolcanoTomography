@@ -1,0 +1,160 @@
+
+  Begin Program PRONTO
+
+      Run parameters loaded.
+
+      Begin loading observed data:
+      Source number =    1
+        x =        8.19    z =      -21.49    Number of traveltimes =     1
+      Source number =    2
+        x =       32.89    z =       18.85    Number of traveltimes =     1
+      Source number =    3
+        x =       -4.31    z =       -9.02    Number of traveltimes =     2
+      Source number =    4
+        x =      -11.21    z =      -30.24    Number of traveltimes =     2
+
+      Total number of sources     =      4
+      Total number of traveltimes =      6
+
+      Min/max horizontal source/receiver coordinates =     -36.85      44.54
+      Min/max vertical source/receiver coordinates   =     -30.24      36.09
+
+      Slowness grid defined:
+        Number of horizontal grid points    =     49
+        Number of vertical grid points      =     41
+        Number of slowness cells            =   1920
+        Grid interval                       =       2.25
+        Min/max horizontal grid coordinates =     -52.00       56.00
+        Min/max vertical grid coordinates   =     -43.00       47.00
+
+      Initial slowness model obtained from linear velocity formula.
+
+      5 constraint operators defined:
+        Operator #1:
+                             0.00     0.00     0.00
+                             0.00     2.00     0.00
+                             0.00     0.00     0.00
+        Operator #2:
+                             0.00     0.00     0.00
+                             0.00    -3.00     3.00
+                             0.00     0.00     0.00
+        Operator #3:
+                             0.00     0.00     0.00
+                             0.00    -3.00     0.00
+                             0.00     3.00     0.00
+        Operator #4:
+                             0.00     0.00     0.00
+                             8.00   -16.00     8.00
+                             0.00     0.00     0.00
+        Operator #5:
+                             0.00     8.00     0.00
+                             0.00   -16.00     0.00
+                             0.00     8.00     0.00
+
+      Reference slowness model identical to initial slowness model.
+
+      Begin tomographic inversion procedure.
+      Constraint equations loaded: Number of Jacobean matrix elements =   20768
+      Iteration number =   1
+      Begin forward computations:
+        Source number    1: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     20797
+        Source number    2: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     20832
+        Source number    3: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     20910
+        Source number    4: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21014
+      Total number of raypaths=      6
+      Total number of traveltimes used in inversion =     6
+      Rms traveltime error = 5502.928 ms
+      Slowness model scaled;   scalar =  1.02194
+          Improved rms traveltime error = 5468.253 ms
+      Begin inverse computations:
+        LSQR iteration =   1   relative error =  0.965307
+        LSQR iteration =   2   relative error =  0.925185
+        LSQR iteration =   3   relative error =  0.883072
+        LSQR iteration =   4   relative error =  0.851730
+        LSQR iteration =   5   relative error =  0.823838
+        LSQR iteration =   6   relative error =  0.802120
+        LSQR iteration =   7   relative error =  0.782463
+        LSQR iteration =   8   relative error =  0.766588
+        LSQR iteration =   9   relative error =  0.752776
+        LSQR iteration =  10   relative error =  0.741755
+        LSQR iteration =  11   relative error =  0.732386
+        LSQR iteration =  12   relative error =  0.724647
+        LSQR iteration =  13   relative error =  0.718005
+        LSQR iteration =  14   relative error =  0.712360
+        LSQR iteration =  15   relative error =  0.707538
+        LSQR iteration =  16   relative error =  0.703664
+        LSQR iteration =  17   relative error =  0.700295
+        LSQR iteration =  18   relative error =  0.697555
+        LSQR iteration =  19   relative error =  0.695228
+        LSQR iteration =  20   relative error =  0.693170
+        LSQR iteration =  21   relative error =  0.691449
+        LSQR iteration =  22   relative error =  0.690008
+        LSQR iteration =  23   relative error =  0.688749
+        LSQR iteration =  24   relative error =  0.687732
+        LSQR iteration =  25   relative error =  0.686866
+        LSQR iteration =  26   relative error =  0.686170
+        LSQR iteration =  27   relative error =  0.685565
+        LSQR iteration =  28   relative error =  0.685081
+        LSQR iteration =  29   relative error =  0.684639
+        LSQR iteration =  30   relative error =  0.684276
+        LSQR iteration =  31   relative error =  0.683952
+        LSQR iteration =  32   relative error =  0.683689
+        LSQR iteration =  33   relative error =  0.683441
+        LSQR iteration =  34   relative error =  0.683217
+        LSQR iteration =  35   relative error =  0.683056
+        LSQR iteration =  36   relative error =  0.682893
+        LSQR iteration =  37   relative error =  0.682750
+        LSQR iteration =  38   relative error =  0.682640
+        LSQR iteration =  39   relative error =  0.682553
+        LSQR iteration =  40   relative error =  0.682478
+        LSQR iteration =  41   relative error =  0.682421
+        LSQR iteration =  42   relative error =  0.682362
+        LSQR iteration =  43   relative error =  0.682320
+        LSQR iteration =  44   relative error =  0.682285
+        LSQR iteration =  45   relative error =  0.682258
+        LSQR iteration =  46   relative error =  0.682237
+        LSQR iteration =  47   relative error =  0.682216
+        LSQR iteration =  48   relative error =  0.682198
+        LSQR iteration =  49   relative error =  0.682181
+        LSQR iteration =  50   relative error =  0.682167
+        LSQR iteration =  51   relative error =  0.682155
+      Slowness model updated.
+      Iteration number =   2
+      Begin forward computations:
+        Source number    1: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     20798
+        Source number    2: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     20839
+        Source number    3: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     20917
+        Source number    4: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21021
+      Total number of raypaths=      6
+      Total number of traveltimes used in inversion =     6
+      Rms traveltime error = 3714.655 ms
+      Slowness model scaled;   scalar =  1.05529
+          Improved rms traveltime error = 3388.542 ms
+
+      Velocity model output:
+        Min/max horizontal coordinates =     -52.00       56.00
+        Min/max vertical coordinates   =     -43.00       47.00
+        Min/max velocities             =       1.89        3.05
+
+      Ray density map output:
+        Min/max horizontal coordinates =     -50.88       54.88
+        Min/max vertical coordinates   =     -41.88       45.88
+        Min/max ray densities          =       0.00        4.88
+
+      Predicted traveltimes output.

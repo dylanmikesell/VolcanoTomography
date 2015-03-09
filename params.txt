@@ -1,0 +1,81 @@
+
+# Setup the tomography grid
+dxz      = 2.25         # [km] Spatial grid interval (positive).
+iop_grid = 1            # Option flag for defining 2D spatial grid
+xmin     = -52          # [km] iop_grid=1: grid is defined by user-specified limits                           
+xmax     = 56           # [km] iop_grid=1: grid is defined by user-specified limits
+zmin     = -43          # [km] iop_grid=1: grid is defined by user-specified limits
+zmax     = 47           # [km] iop_grid=1: grid is defined by user-specified limits
+
+# Minimum and maximum observed traveltimes to use in inversion (tmax > tmin).
+tmin = 1.000            # [s]
+tmax = 40.00            # [s]
+
+# Minimum and maximum velocity bounds to impose in inversion (vmax > vmin).
+vmin = 0.750            # [km/s]
+vmax = 5.000            # [km/s]
+
+# Parameters defining zeroeth derivative constraints. See Aldridge and Oldenburg (1993).
+mu0    = 2.0            # "Zeroth derivative" constraint weight (non-negative, 0=no regularization).
+
+# Parameters defining first derivative constraints
+mu1_h  = 3.0            # horizontal derivative weight    (non-negative, 0=no regularization).
+mu1_v  = 3.0            # vertical derivative weight      (non-negative, 0=no regularization).
+mu1_d  = 0.0            # directional derivative weight   (non-negative, 0=no regularization).
+theta1 = 0.0            # angle of directional derivative (degrees, rel to horizontal).
+
+# Parameters defining second derivative constraints
+mu2_h  = 8.0            # horizontal derivative weight    (non-negative, 0=no regularization).
+mu2_v  = 8.0            # vertical derivative weight      (non-negative, 0=no regularization).
+mu2_d  = 0.0            # directional derivative weight   (non-negative, 0=no regularization).
+theta2 = 0.0            # angle of directional derivative (degrees, rel to horizontal).
+mu2_m  = 0.0            # mixed derivative weight         (non-negative, 0=no regularization).
+
+# Smoothing parameters 
+xwidth = 0.0            # Horizontal and vertical dimensions of rectangular smoothing filter (0 = no filter in coordinate direction)
+zwidth = 0.0            # Horizontal and vertical dimensions of rectangular smoothing filter (0 = no filter in coordinate direction)
+cwait  = 1.0            # Center weight of "tent-shaped" distribution of filter weights (1.0 = uniform weighting)      
+
+# Initial velocity model option flag
+iop_in = 1              # (1=linear velocity formula, 2=read from external file).
+
+# Linear velocity parameters for initial velocity model
+xo_in  = 0.0            # Horizontal coordinate of reference point
+zo_in  = 0.0            # Vertical coordinate of reference point
+vo_in  = 2.5            # Velocity [km/s] at reference point.
+a_in   = 0.0            # Magnitude of velocity gradient. 
+phi_in = 0.0            # Direction angle of velocity gradient (degrees, rel to horizontal).
+
+# Reference velocity model option flag
+iop_vref = 0            # (0=initial model, 1=linear velocity formula, 2=read from external file).
+
+# Linear velocity parameters for reference velocity model:
+xo_ref  = 0.0           # Horizontal coordinates of reference point
+zo_ref  = 0.0           # Vertical coordinates of reference point
+vo_ref  = 2.5           # Velocity [km/s] at reference point.
+a_ref   = 0.0           # Magnitude of velocity gradient. 
+phi_ref = 0.0           # Direction angle of velocity gradient (degrees, rel to horizontal).
+
+# Topography option flag
+iop_topo = 0            # (0=ignore, 1=horizontal surface, 2=read surface topography from external file).
+z_topo   = 0            # z-coordinate of a horizontal plane surface (for iop_topo=1).
+v_reduce = 0            # Velocity reduction factor above topographic surface (greater than 1.0). 
+airspeed = 0            # Speed of sound in air.
+
+# Traveltime output option flag
+iop_tout = 1            # (0=none, 1=predicted traveltimes, 2=final traveltime residuals).
+
+# Parameters defining treatment of traveltime residuals
+errlim = 0.0425         # Rms error limit for terminating tomographic iterations (non-negative).
+tcutoff = 45.000        # Upper limit for including residuals in inversion (positive).
+
+# Iteration parameters
+niter = 1               # Maximum number of tomographic iterations (positive integer).
+itmax = 51              # Number of LSQR iterations (positive integer).
+
+# Text file containing [col1=lat, col2=lon, col3=elev, col4=name, col5=comp]
+stationFile = KatmaiStations.txt 
+
+
+
+

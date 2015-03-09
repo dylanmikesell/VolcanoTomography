@@ -1,0 +1,296 @@
+
+  Begin Program PRONTO
+
+      Run parameters loaded.
+
+      Begin loading observed data:
+      Source number =    1
+        x =        8.19    z =      -21.49    Number of traveltimes =    12
+      Source number =    2
+        x =      -10.08    z =       -5.96    Number of traveltimes =     5
+      Source number =    3
+        x =      -10.08    z =       -5.96    Number of traveltimes =     4
+      Source number =    4
+        x =        6.05    z =       36.09    Number of traveltimes =    16
+      Source number =    5
+        x =       32.89    z =       18.85    Number of traveltimes =     5
+      Source number =    6
+        x =        3.72    z =       17.85    Number of traveltimes =     9
+      Source number =    7
+        x =        2.83    z =       -3.05    Number of traveltimes =     4
+      Source number =    8
+        x =        2.83    z =       -3.05    Number of traveltimes =     5
+      Source number =    9
+        x =       23.72    z =       19.27    Number of traveltimes =     8
+      Source number =   10
+        x =       18.12    z =        6.59    Number of traveltimes =     7
+      Source number =   11
+        x =       -5.38    z =       -5.50    Number of traveltimes =     4
+      Source number =   12
+        x =       -4.31    z =       -9.02    Number of traveltimes =     3
+      Source number =   13
+        x =      -36.85    z =       12.85    Number of traveltimes =     9
+      Source number =   14
+        x =      -27.07    z =      -30.07    Number of traveltimes =     5
+      Source number =   15
+        x =      -10.83    z =        6.36    Number of traveltimes =     3
+      Source number =   16
+        x =       -2.99    z =      -21.14    Number of traveltimes =     3
+      Source number =   17
+        x =      -22.45    z =      -13.97    Number of traveltimes =     5
+      Source number =   18
+        x =      -11.21    z =      -30.24    Number of traveltimes =     1
+      Source number =   19
+        x =      -45.20    z =       -6.67    Number of traveltimes =     2
+      Source number =   20
+        x =       -0.11    z =       -1.87    Number of traveltimes =     2
+      Source number =   21
+        x =       -0.11    z =       -1.87    Number of traveltimes =     2
+
+      Total number of sources     =     21
+      Total number of traveltimes =    114
+
+      Min/max horizontal source/receiver coordinates =     -45.20      44.54
+      Min/max vertical source/receiver coordinates   =     -30.24      36.09
+
+      Slowness grid defined:
+        Number of horizontal grid points    =     49
+        Number of vertical grid points      =     41
+        Number of slowness cells            =   1920
+        Grid interval                       =       2.25
+        Min/max horizontal grid coordinates =     -52.00       56.00
+        Min/max vertical grid coordinates   =     -43.00       47.00
+
+      Initial slowness model obtained from linear velocity formula.
+
+      5 constraint operators defined:
+        Operator #1:
+                             0.00     0.00     0.00
+                             0.00     2.00     0.00
+                             0.00     0.00     0.00
+        Operator #2:
+                             0.00     0.00     0.00
+                             0.00    -3.00     3.00
+                             0.00     0.00     0.00
+        Operator #3:
+                             0.00     0.00     0.00
+                             0.00    -3.00     0.00
+                             0.00     3.00     0.00
+        Operator #4:
+                             0.00     0.00     0.00
+                             8.00   -16.00     8.00
+                             0.00     0.00     0.00
+        Operator #5:
+                             0.00     8.00     0.00
+                             0.00   -16.00     0.00
+                             0.00     8.00     0.00
+
+      Reference slowness model identical to initial slowness model.
+
+      Begin tomographic inversion procedure.
+      Constraint equations loaded: Number of Jacobean matrix elements =   20768
+      Iteration number =   1
+      Begin forward computations:
+        Source number    1: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21054
+        Source number    2: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21153
+        Source number    3: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21273
+        Source number    4: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21699
+        Source number    5: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21885
+        Source number    6: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22078
+        Source number    7: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22196
+        Source number    8: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22331
+        Source number    9: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22594
+        Source number   10: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22779
+        Source number   11: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22899
+        Source number   12: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23002
+        Source number   13: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23256
+        Source number   14: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23345
+        Source number   15: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23400
+        Source number   16: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23516
+        Source number   17: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23665
+        Source number   18: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23692
+        Source number   19: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23740
+        Source number   20: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23808
+        Source number   21: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23876
+      Total number of raypaths=    114
+      Total number of traveltimes used in inversion =   114
+      Rms traveltime error = 2840.389 ms
+      Slowness model scaled;   scalar =  0.98570
+          Improved rms traveltime error = 2827.053 ms
+      Begin inverse computations:
+        LSQR iteration =   1   relative error =  0.966759
+        LSQR iteration =   2   relative error =  0.935939
+        LSQR iteration =   3   relative error =  0.910575
+        LSQR iteration =   4   relative error =  0.893478
+        LSQR iteration =   5   relative error =  0.880073
+        LSQR iteration =   6   relative error =  0.870425
+        LSQR iteration =   7   relative error =  0.863356
+        LSQR iteration =   8   relative error =  0.858152
+        LSQR iteration =   9   relative error =  0.853913
+        LSQR iteration =  10   relative error =  0.850595
+        LSQR iteration =  11   relative error =  0.847902
+        LSQR iteration =  12   relative error =  0.845756
+        LSQR iteration =  13   relative error =  0.844036
+        LSQR iteration =  14   relative error =  0.842699
+        LSQR iteration =  15   relative error =  0.841668
+        LSQR iteration =  16   relative error =  0.840857
+        LSQR iteration =  17   relative error =  0.840190
+        LSQR iteration =  18   relative error =  0.839653
+        LSQR iteration =  19   relative error =  0.839237
+        LSQR iteration =  20   relative error =  0.838908
+        LSQR iteration =  21   relative error =  0.838637
+        LSQR iteration =  22   relative error =  0.838414
+        LSQR iteration =  23   relative error =  0.838234
+        LSQR iteration =  24   relative error =  0.838088
+        LSQR iteration =  25   relative error =  0.837964
+        LSQR iteration =  26   relative error =  0.837862
+        LSQR iteration =  27   relative error =  0.837774
+        LSQR iteration =  28   relative error =  0.837697
+        LSQR iteration =  29   relative error =  0.837631
+        LSQR iteration =  30   relative error =  0.837576
+        LSQR iteration =  31   relative error =  0.837531
+        LSQR iteration =  32   relative error =  0.837491
+        LSQR iteration =  33   relative error =  0.837456
+        LSQR iteration =  34   relative error =  0.837422
+        LSQR iteration =  35   relative error =  0.837395
+        LSQR iteration =  36   relative error =  0.837368
+        LSQR iteration =  37   relative error =  0.837349
+        LSQR iteration =  38   relative error =  0.837333
+        LSQR iteration =  39   relative error =  0.837318
+        LSQR iteration =  40   relative error =  0.837307
+        LSQR iteration =  41   relative error =  0.837299
+        LSQR iteration =  42   relative error =  0.837291
+        LSQR iteration =  43   relative error =  0.837283
+        LSQR iteration =  44   relative error =  0.837278
+        LSQR iteration =  45   relative error =  0.837274
+        LSQR iteration =  46   relative error =  0.837270
+        LSQR iteration =  47   relative error =  0.837267
+        LSQR iteration =  48   relative error =  0.837264
+        LSQR iteration =  49   relative error =  0.837261
+        LSQR iteration =  50   relative error =  0.837259
+        LSQR iteration =  51   relative error =  0.837257
+      Slowness model updated.
+      Iteration number =   2
+      Begin forward computations:
+        Source number    1: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21054
+        Source number    2: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21155
+        Source number    3: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21276
+        Source number    4: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21707
+        Source number    5: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     21896
+        Source number    6: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22092
+        Source number    7: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22210
+        Source number    8: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22345
+        Source number    9: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22611
+        Source number   10: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22799
+        Source number   11: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     22921
+        Source number   12: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23024
+        Source number   13: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23280
+        Source number   14: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23369
+        Source number   15: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23425
+        Source number   16: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23541
+        Source number   17: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23690
+        Source number   18: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23717
+        Source number   19: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23767
+        Source number   20: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23835
+        Source number   21: Traveltimes done.
+                            Raypaths done.
+                            Number of Jacobian matrix elements =     23903
+      Total number of raypaths=    114
+      Total number of traveltimes used in inversion =   114
+      Rms traveltime error = 2500.214 ms
+      Slowness model scaled;   scalar =  1.03376
+          Improved rms traveltime error = 2421.899 ms
+
+      Velocity model output:
+        Min/max horizontal coordinates =     -52.00       56.00
+        Min/max vertical coordinates   =     -43.00       47.00
+        Min/max velocities             =       2.00        3.27
+
+      Ray density map output:
+        Min/max horizontal coordinates =     -50.88       54.88
+        Min/max vertical coordinates   =     -41.88       45.88
+        Min/max ray densities          =       0.00       33.92
+
+      Predicted traveltimes output.
