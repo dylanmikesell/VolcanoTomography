@@ -156,61 +156,61 @@
                             Number of Jacobian matrix elements =     23177
       Total number of raypaths=    121
       Total number of traveltimes used in inversion =   121
-      Rms traveltime error = 3262.197 ms
-      Slowness model scaled;   scalar =  1.04868
-          Improved rms traveltime error = 3179.536 ms
+      Rms traveltime error = 3257.612 ms
+      Slowness model scaled;   scalar =  1.04821
+          Improved rms traveltime error = 3176.444 ms
       Begin inverse computations:
-        LSQR iteration =   1   relative error =  0.974411
-        LSQR iteration =   2   relative error =  0.944202
-        LSQR iteration =   3   relative error =  0.916601
-        LSQR iteration =   4   relative error =  0.897689
-        LSQR iteration =   5   relative error =  0.884515
-        LSQR iteration =   6   relative error =  0.875560
-        LSQR iteration =   7   relative error =  0.868762
-        LSQR iteration =   8   relative error =  0.863633
-        LSQR iteration =   9   relative error =  0.859534
-        LSQR iteration =  10   relative error =  0.856354
-        LSQR iteration =  11   relative error =  0.853842
-        LSQR iteration =  12   relative error =  0.851903
-        LSQR iteration =  13   relative error =  0.850303
-        LSQR iteration =  14   relative error =  0.848998
-        LSQR iteration =  15   relative error =  0.847909
-        LSQR iteration =  16   relative error =  0.847018
-        LSQR iteration =  17   relative error =  0.846297
-        LSQR iteration =  18   relative error =  0.845719
-        LSQR iteration =  19   relative error =  0.845252
-        LSQR iteration =  20   relative error =  0.844873
-        LSQR iteration =  21   relative error =  0.844562
-        LSQR iteration =  22   relative error =  0.844306
-        LSQR iteration =  23   relative error =  0.844090
-        LSQR iteration =  24   relative error =  0.843906
-        LSQR iteration =  25   relative error =  0.843750
-        LSQR iteration =  26   relative error =  0.843612
-        LSQR iteration =  27   relative error =  0.843491
-        LSQR iteration =  28   relative error =  0.843393
-        LSQR iteration =  29   relative error =  0.843295
-        LSQR iteration =  30   relative error =  0.843213
-        LSQR iteration =  31   relative error =  0.843135
-        LSQR iteration =  32   relative error =  0.843078
-        LSQR iteration =  33   relative error =  0.843022
-        LSQR iteration =  34   relative error =  0.842971
-        LSQR iteration =  35   relative error =  0.842934
-        LSQR iteration =  36   relative error =  0.842900
-        LSQR iteration =  37   relative error =  0.842867
-        LSQR iteration =  38   relative error =  0.842843
-        LSQR iteration =  39   relative error =  0.842825
-        LSQR iteration =  40   relative error =  0.842808
-        LSQR iteration =  41   relative error =  0.842794
-        LSQR iteration =  42   relative error =  0.842779
-        LSQR iteration =  43   relative error =  0.842768
-        LSQR iteration =  44   relative error =  0.842757
-        LSQR iteration =  45   relative error =  0.842750
-        LSQR iteration =  46   relative error =  0.842744
-        LSQR iteration =  47   relative error =  0.842739
-        LSQR iteration =  48   relative error =  0.842734
-        LSQR iteration =  49   relative error =  0.842730
-        LSQR iteration =  50   relative error =  0.842727
-        LSQR iteration =  51   relative error =  0.842723
+        LSQR iteration =   1   relative error =  0.974407
+        LSQR iteration =   2   relative error =  0.944195
+        LSQR iteration =   3   relative error =  0.916589
+        LSQR iteration =   4   relative error =  0.897676
+        LSQR iteration =   5   relative error =  0.884503
+        LSQR iteration =   6   relative error =  0.875550
+        LSQR iteration =   7   relative error =  0.868755
+        LSQR iteration =   8   relative error =  0.863627
+        LSQR iteration =   9   relative error =  0.859531
+        LSQR iteration =  10   relative error =  0.856353
+        LSQR iteration =  11   relative error =  0.853844
+        LSQR iteration =  12   relative error =  0.851907
+        LSQR iteration =  13   relative error =  0.850309
+        LSQR iteration =  14   relative error =  0.849007
+        LSQR iteration =  15   relative error =  0.847919
+        LSQR iteration =  16   relative error =  0.847030
+        LSQR iteration =  17   relative error =  0.846311
+        LSQR iteration =  18   relative error =  0.845735
+        LSQR iteration =  19   relative error =  0.845270
+        LSQR iteration =  20   relative error =  0.844892
+        LSQR iteration =  21   relative error =  0.844582
+        LSQR iteration =  22   relative error =  0.844327
+        LSQR iteration =  23   relative error =  0.844113
+        LSQR iteration =  24   relative error =  0.843930
+        LSQR iteration =  25   relative error =  0.843775
+        LSQR iteration =  26   relative error =  0.843638
+        LSQR iteration =  27   relative error =  0.843518
+        LSQR iteration =  28   relative error =  0.843421
+        LSQR iteration =  29   relative error =  0.843323
+        LSQR iteration =  30   relative error =  0.843243
+        LSQR iteration =  31   relative error =  0.843166
+        LSQR iteration =  32   relative error =  0.843109
+        LSQR iteration =  33   relative error =  0.843053
+        LSQR iteration =  34   relative error =  0.843003
+        LSQR iteration =  35   relative error =  0.842967
+        LSQR iteration =  36   relative error =  0.842933
+        LSQR iteration =  37   relative error =  0.842900
+        LSQR iteration =  38   relative error =  0.842876
+        LSQR iteration =  39   relative error =  0.842858
+        LSQR iteration =  40   relative error =  0.842842
+        LSQR iteration =  41   relative error =  0.842828
+        LSQR iteration =  42   relative error =  0.842812
+        LSQR iteration =  43   relative error =  0.842802
+        LSQR iteration =  44   relative error =  0.842791
+        LSQR iteration =  45   relative error =  0.842784
+        LSQR iteration =  46   relative error =  0.842779
+        LSQR iteration =  47   relative error =  0.842773
+        LSQR iteration =  48   relative error =  0.842769
+        LSQR iteration =  49   relative error =  0.842765
+        LSQR iteration =  50   relative error =  0.842761
+        LSQR iteration =  51   relative error =  0.842758
       Slowness model updated.
       Iteration number =   2
       Begin forward computations:
@@ -279,9 +279,9 @@
                             Number of Jacobian matrix elements =     23187
       Total number of raypaths=    121
       Total number of traveltimes used in inversion =   121
-      Rms traveltime error = 2835.749 ms
-      Slowness model scaled;   scalar =  1.03235
-          Improved rms traveltime error = 2792.225 ms
+      Rms traveltime error = 2832.829 ms
+      Slowness model scaled;   scalar =  1.03227
+          Improved rms traveltime error = 2789.499 ms
 
       Velocity model output:
         Min/max horizontal coordinates =     -52.00       56.00
@@ -291,6 +291,6 @@
       Ray density map output:
         Min/max horizontal coordinates =     -50.88       54.88
         Min/max vertical coordinates   =     -41.88       45.88
-        Min/max ray densities          =       0.00       14.74
+        Min/max ray densities          =       0.00       14.75
 
       Predicted traveltimes output.

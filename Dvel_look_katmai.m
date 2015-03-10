@@ -5,38 +5,8 @@ clear all
 load('REVISED_Colormaps_RAYLEIGH','mycmap')
 
 % station information
-nchan = 30;
-latlon = zeros(nchan,2);
-latlon(1,:) = [ 58.1312  	-154.9692 ]; % KABR
-latlon(2,:) = [ 58.2709 	-155.2822 ]; % KABU Z
-latlon(3,:) = [ 58.2709 	-155.2822 ]; % E
-latlon(4,:) = [ 58.2709 	-155.2822 ]; % N
-latlon(5,:) = [ 58.6490 	-155.0060 ]; % KAHC
-latlon(6,:) = [ 58.4940 	-154.5463 ]; % KAHG
-latlon(7,:) = [ 58.4850 	-155.0458 ]; % KAIC
-latlon(8,:) = [ 58.2970 	-155.0611 ]; % KAKN Z
-latlon(9,:) = [ 58.2970 	-155.0611 ]; % E
-latlon(10,:) = [ 58.2970 	-155.0611 ]; % N
-latlon(11,:) = [ 58.4978 	-154.7033 ]; % KARR
-latlon(12,:) = [ 58.3837 	-154.7992 ]; % KAWH
-latlon(13,:) = [ 58.2750 	-155.2017 ]; % KBM
-latlon(14,:) = [ 58.2433 	-155.1833 ]; % KCE
-latlon(15,:) = [ 58.4400 	-155.7407 ]; % KEL
-latlon(16,:) = [ 58.0540  	-155.5732 ]; % KJL
-latlon(17,:) = [ 58.3817  	-155.2950 ]; % KVT
-latlon(18,:) = [ 58.1343  	-155.1608 ]; % MGLS
-latlon(19,:) = [ 58.1988  	-155.4940 ]; % ANCK
-latlon(20,:) = [ 58.0525  	-155.3015 ]; % CAHL
-latlon(21,:) = [ 58.2645  	-155.8837 ]; % CNTC
-latlon(22,:) = [ 58.2107  	-155.3260 ]; % ACH Z
-latlon(23,:) = [ 58.2107  	-155.3260 ]; %
-latlon(24,:) = [ 58.2107  	-155.3260 ]; %
-latlon(25,:) = [ 58.3076 	-155.1114 ]; % KCG Z
-latlon(26,:) = [ 58.3076 	-155.1114 ]; %
-latlon(27,:) = [ 58.3076 	-155.1114 ]; %
-latlon(28,:) = [ 58.5968 	-154.3468 ]; % KAPH Z
-latlon(29,:) = [ 58.5968 	-154.3468 ]; %
-latlon(30,:) = [ 58.5968 	-154.3468 ]; %
+[latlon, stationName, component] = readStationFile( readParam('stationFile') );
+chan = size( latlon, 1 );
 
 % origin of cartesian coordinate system
 lat0 = mean(latlon(:,1))*(pi/180);
@@ -59,7 +29,7 @@ for fcmp = 1:nfrqs
     nx = 49;
     nz = 41;
     
-    a = load(sprintf('velData/vel%d.final',fcmp));
+    a = load(sprintf('VelData_old/vel%d.final',fcmp));
     x = zeros(nx,nz);
     y = x;
     vel = x;
