@@ -7,7 +7,7 @@ clc
 %
 
 % for all frequencies considered - here .1:.01:.7
-for fcmp = 1:61
+for fcmp = 1:81
     
     % write a run file for that frequency
     

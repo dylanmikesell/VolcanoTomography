@@ -1,12 +1,12 @@
 #! /bin/sh
 
 # 41 frequencies
-snum=62
+snum=81
 
 snumiter=1
-while [ $snumiter -lt $snum ]
+while [ $snumiter -le $snum ]
 do
-
+echo $snumiter
 cp runFiles/pronto$snumiter.run pronto.run
 
 cp obsData/data$snumiter.obs data.obs
