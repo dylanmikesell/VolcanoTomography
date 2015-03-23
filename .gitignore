@@ -1,3 +1,5 @@
+data.prd
+data.obs
 rayData
 rayData_old
 VelData
@@ -8,6 +10,4 @@ runFiles
 outFiles
 ObsData
 XCorData
-data.prd
-data.obs
 vel.final
