@@ -1,0 +1,74 @@
+1,                                dxz
+1,                                iop_grid
+-3,103,-3,403,                    xmin,xmax,zmin,zmax
+0.000,0.200,                      tmin,tmax
+500,5000,                         vmin,vmax
+0,                                mu0
+4,4,0,0,                          mu1_h,mu1_v,mu1_d,theta1
+0,0,0,0,0,                        mu2_h,mu2_v,mu2_d,theta2,mu2_m
+0,0,1,                            xwidth,zwidth,cwait
+1,                                iop_vin
+0,0,2000,2.5,90,                  xo_in,zo_in,vo_in,a_in,phi_in
+0,                                iop_vref
+0,0,2000,2.5,90,                  xo_ref,zo_ref,vo_ref,a_ref,phi_ref
+0,0,0,0,                          iop_topo,z_topo,v_reduce,airspeed
+2,                                iop_tout
+0.000025,0.010,                   errlim,tcutoff
+10,50,                            niter,itmax
+
+
+NOTES:
+
+1)  dxz:  Spatial grid interval (positive).
+2)  iop_grid:  Option flag for defining 2D spatial grid:
+        iop_grid=1: grid is defined by user-specified limits (xmin,xmax,zmin,zmax).
+        iop_grid=2: grid is defined by source/receiver geometry, and user-specified extension
+                    distances (xmin_xtend,xmax_xtend,zmin_xtend,zmax_xtend) for model edges 
+                    (non-negative).
+3)  If iop_grid=1, input the four quantities (xmin,xmax,zmin,zmax).
+    If iop_grid=2, input the four quantities (xmin_xtend,xmax_xtend,zmin_xtend,zmax_xtend).
+4)  tmin,tmax:  Minimum and maximum observed traveltimes to use in inversion (tmax > tmin).
+5)  vmin,vmax:  Minimum and maximum velocity bounds to impose in inversion (vmax > vmin).
+6)  mu0: "Zeroth derivative" constraint weight (non-negative, 0=no regularization).
+7)  mu1_h,mu1_v,mu1_d,theta1: Parameters defining first derivative constraints:
+        mu1_h:  horizontal derivative weight  (non-negative, 0=no regularization).
+        mu1_v:  vertical derivative weight    (non-negative, 0=no regularization).
+        mu1_d:  directional derivative weight (non-negative, 0=no regularization).
+        theta1: angle of directional derivative (degrees, rel to horizontal).
+8)  mu2_h,mu2_v,mu2_d,theta2,mu2_m:  Parameters defining second derivative constraints:
+        mu2_h:  horizontal derivative weight  (non-negative, 0=no regularization).
+        mu2_v:  vertical derivative weight    (non-negative, 0=no regularization).
+        mu2_d:  directional derivative weight (non-negative, 0=no regularization).
+        theta1: angle of directional derivative (degrees, rel to horizontal).
+        mu2_m: mixed derivative weight       (non-negative, 0=no regularization).
+9)  xwidth,zwidth: Horizontal and vertical dimensions of rectangular smoothing filter
+        (0 = no filter in coordinate direction).
+    cwait: Center weight of "tent-shaped" distribution of filter weights (1.0=uniform weighting).
+10) iop_vin:  Initial velocity model option flag (1=linear velocity formula, 
+        2=read from external file).
+11) xo_in,zo_in,vo_in,a_in,phi_in: Linear velocity parameters for initial velocity model: 
+        xo_in,zo_in: Horizontal and vertical coordinates of reference point.
+        vo_in:       Velocity at reference point.
+        a_in:        Magnitude of velocity gradient. 
+        phi_in:      Direction angle of velocity gradient (degrees, rel to horizontal).
+12) iop_vref: Reference velocity model option flag (0=initial model, 1=linear velocity formula, 
+        2=read from external file).
+13) xo_ref,zo_ref,vo_ref,a_ref,phi_ref: Linear velocity parameters for reference velocity model:
+        xo_ref,zo_ref: Horizontal and vertical coordinates of reference point.
+        vo_ref:        Velocity at reference point.
+        a_ref:         Magnitude of velocity gradient. 
+        phi_ref:       Direction angle of velocity gradient (degrees, rel to horizontal).
+14) iop_topo: Topography option flag (0=ignore, 1=horizontal surface, 2=read surface topography 
+      from external file).
+    z_topo:   z-coordinate of a horizontal plane surface (for iop_topo=1).
+    v_reduce: Velocity reduction factor above topographic surface (greater than 1.0). 
+    airspeed: Speed of sound in air.
+15) iop_tout: Traveltime output option flag (0=none, 1=predicted traveltimes, 2=final 
+        traveltime residuals).
+16) errlim,tcutoff: Parameters defining treatment of traveltime residuals:
+        errlim:  Rms error limit for terminating tomographic iterations (non-negative).
+        tcutoff: Upper limit for including residuals in inversion (positive).
+17) niter,itmax: Iteration parameters: 
+        niter: Maximum number of tomographic iterations (positive integer).
+        itmax: Number of LSQR iterations (positive integer).
+
