@@ -1,4 +1,5 @@
-Dylan - Below are the instructions and attached are the necessary files for the checkerboard test. Try it and send me any questions you have.
+Dylan - Below are the instructions and attached are the necessary files 
+for the checkerboard test. Try it and send me any questions you have.
 
 Of course, you can do this on your array geometry without any data.
 
@@ -7,7 +8,8 @@ Matt
 
 Instructions:
 
-0. Rename the attached file "fmod.txt" as "fmod.com". Copy all attached files into the same directory as was used for the previous example I sent.
+0. Rename the attached file "fmod.txt" as "fmod.com". Copy all attached 
+files into the same directory as was used for the previous example I sent.
 
 
 
@@ -49,8 +51,6 @@ $ manyvels_fm2.sh
 
 This does modeling at each frequency from 0.1:0.01:0.7 Hz.
 
- 
-
 5. Run the matlab code "write_fmod2_kat".
 
 >> write_fmod2_kat
@@ -60,13 +60,11 @@ This makes 61 pronto*.run files from 0.1:0.01:0.7 Hz, which are input
 files for the tomography using the modeling results as data
 
  
-
 6. Execute the shell script "manyvels_chktst.sh" at the command line.
 
 $ manyvels_chktst.sh
 
 This does tomography at each frequency from 0.1:0.01:0.7 Hz.
-
  
 
 7. Run the matlab code "vel_look_katmai_res".
